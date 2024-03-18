@@ -6,7 +6,7 @@ import Actions from './Actions.js'
 
 const row = (bill) => {
   return (`
-    <tr>
+    <tr >
       <td>${bill.type}</td>
       <td>${bill.name}</td>
       <td>${bill.date}</td>
@@ -17,14 +17,14 @@ const row = (bill) => {
       </td>
     </tr>
     `)
-  }
+}
 
 const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {
-  
+
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -47,7 +47,7 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
-  
+
   return (`
     <div class='layout'>
       ${VerticalLayout(120)}
@@ -57,7 +57,7 @@ export default ({ data: bills, loading, error }) => {
           <button type="button" data-testid='btn-new-bill' class="btn btn-primary">Nouvelle note de frais</button>
         </div>
         <div id="data-table">
-        <table id="example" class="table table-striped" style="width:100%">
+        <table id="example" class="table table-striped" style="width:100%" data-order='[[2,"DESC"]]'>
           <thead>
               <tr>
                 <th>Type</th>
@@ -70,11 +70,11 @@ export default ({ data: bills, loading, error }) => {
           </thead>
           <tbody data-testid="tbody">
             ${rows(bills)}
-          </tbody>
-          </table>
-        </div>
-      </div>
-      ${modal()}
-    </div>`
+          </tbody >
+          </table >
+        </div >
+      </div >
+  ${modal()}
+    </div > `
   )
 }
